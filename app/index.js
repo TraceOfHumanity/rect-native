@@ -17,6 +17,9 @@ import Nearbyjobs from "../components/home/nearby/Nearbyjobs";
 import ScreenHeaderBtn from "../components/common/header/ScreenHeaderBtn";
 
 const Home = () => {
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <SafeAreaView
       // style={{
@@ -42,7 +45,15 @@ const Home = () => {
       />
       <ScrollView>
         <View>
-          <Welcome />
+          <Welcome
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            handleClick={() => {
+              if (searchTerm) {
+                router.push(`/search/${searchTerm}`);
+              }
+            }}
+          />
           <Popularjods />
           <Nearbyjobs />
         </View>
